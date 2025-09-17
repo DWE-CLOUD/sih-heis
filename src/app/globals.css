@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand palette */
+  --brand-100: #FEFAE0;
+  --brand-200: #F6EBC9;
+  --brand-300: #EDDBB2;
+  --brand-400: #E4CB9B;
+  --brand-500: #DDA15E;
+  --brand-600: #C98A4D;
+  --brand-700: #BC6C25;
+  --brand-800: #8D511C;
+  --brand-900: #5E3612;
+
+  /* Base surface/text */
+  --background: var(--brand-100);
+  --foreground: var(--brand-900);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* High contrast toggle */
+.high-contrast {
+  --foreground: #000000;
+}
+
+/* Utility: brand gradient and glass surfaces */
+.brand-gradient { 
+  background: linear-gradient(175deg, var(--brand-100) 0%, var(--brand-200) 100%); 
+}
+
+/* Section surfaces for contrast/control */
+.surface { background: var(--brand-100); }
+.surface-alt { background: var(--brand-200); }
+.surface-strong { background: var(--brand-300); }
+.section-shell {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .section-shell {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.glass {
+  background: color-mix(in oklab, white 65%, transparent);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border: 1px solid color-mix(in oklab, var(--brand-700) 15%, black 5%);
+  border-radius: 0.7rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* UI Verse-inspired glass card */
+.uv-container {
+  color: var(--foreground);
+  position: relative;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui;
+}
+
+.uv-container::before,
+.uv-container::after {
+  content: "";
+  background-color: #fab5704c;
+  position: absolute;
+}
+
+.uv-container::before {
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+  top: 30%;
+  right: 7%;
+}
+
+/* This rule is causing unwanted vertical lines and is being removed. */
+/*
+.uv-container::after {
+  content: "";
+  position: absolute;
+  height: 3rem;
+  top: 8%;
+  right: 5%;
+  border: 1px solid;
+}
+*/
+
+.uv-box {
+  width: 100%; /* Make card responsive */
+  min-height: 16rem;
+  padding: 1.5rem; /* Increase padding */
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid color-mix(in oklab, var(--brand-700) 12%, white 88%);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 0.7rem;
+  transition: all ease 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--brand-700) 14%, transparent);
+}
+
+.uv-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--brand-700);
+}
+
+.uv-content strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.uv-content p {
+  margin: 0;
+  font-size: 0.95em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.uv-content span {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.uv-box:hover {
+  box-shadow: 0 0 20px 1px #ffbb763f;
+  border: 1px solid rgba(255, 255, 255, 0.454);
+}
+
+/* UI Verse-inspired shine button */
+.btn-12,
+.btn-12 *,
+.btn-12 :after,
+.btn-12 :before,
+.btn-12:after,
+.btn-12:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-12 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: var(--brand-700);
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui;
+  font-size: 100%;
+  font-weight: 800;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+  border-radius: 99rem;
+  border-width: 2px;
+  overflow: hidden;
+  padding: 0.8rem 2rem;
+  position: relative;
+  box-shadow: 0 12px 30px -10px color-mix(in oklab, var(--brand-700) 30%, transparent);
+}
+
+.btn-12 span {
+  mix-blend-mode: difference;
+}
+
+.btn-12:after,
+.btn-12:before {
+  background: linear-gradient(90deg, #fff 25%, transparent 0, transparent 50%, #fff 0, #fff 75%, transparent 0);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateY(var(--progress, 100%));
+  transition: transform 0.2s ease;
+}
+
+.btn-12:after {
+  --progress: -100%;
+  background: linear-gradient(90deg, transparent 0, transparent 25%, #fff 0, #fff 50%, transparent 0, transparent 75%, #fff 0);
+  z-index: -1;
+}
+
+.btn-12:hover:after,
+.btn-12:hover:before {
+  --progress: 0;
+}
+
+/* UI Verse-like input for options */
+.uv-input {
+  background-color: #eee;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  width: 18rem;
+  border-radius: 1rem;
+  color: var(--brand-700);
+  box-shadow: 0 0.4rem #dfd9d9;
+}
+
+.uv-input:focus {
+  outline-color: var(--brand-700);
+}
+
+/* Glass options (brand-colored) */
+.uv-option {
+  background: color-mix(in oklab, white 80%, transparent);
+  border: 1px solid color-mix(in oklab, var(--brand-700) 18%, white 82%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  color: var(--brand-700);
+  border-radius: 0.9rem;
+  padding: 0.9rem 1.1rem;
+  box-shadow: 0 10px 28px -14px color-mix(in oklab, var(--brand-700) 20%, transparent);
+}
+
+.uv-option:hover {
+  background: color-mix(in oklab, white 88%, transparent);
+}
+
+.uv-action-button {
+  background: color-mix(in oklab, var(--brand-700) 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--brand-700) 18%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  color: var(--brand-900);
+  border-radius: 0.9rem;
+  padding: 0.9rem 1.1rem;
+  box-shadow: 0 10px 28px -14px color-mix(in oklab, var(--brand-700) 20%, transparent);
+  font-weight: 600;
+  text-align: center;
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+.uv-action-button:hover {
+  background: color-mix(in oklab, var(--brand-700) 12%, transparent);
+  border-color: color-mix(in oklab, var(--brand-700) 25%, transparent);
+}
+
+.uv-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: color-mix(in oklab, var(--brand-700) 5%, transparent);
+}
+
+/* Animations for landing page */
+@keyframes blob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 40% 60% 70% 40%; }
+  75% { border-radius: 40% 60% 70% 30% / 60% 40% 30% 70%; }
+}
+
+@keyframes track {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.8); }
+}
+
+.animate-blob {
+  animation: blob 12s ease-in-out infinite;
+}
+
+.animate-track {
+  animation: track 2s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
