@@ -1,14 +1,19 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Map, Gauge, Sparkles, ShieldCheck, Layers, ChevronDown, Clock, AlertTriangle, Zap, Train, BarChart3, TrendingUp, Award } from "lucide-react";
 import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ShineButton } from "@/components/ui/ShineButton";
 
+// Dynamically import client-only components
+const AnimatedBackground = dynamic(() => Promise.resolve(AnimatedBackgroundComponent), { ssr: false });
+const RailwayTrackAnimation = dynamic(() => Promise.resolve(RailwayTrackAnimationComponent), { ssr: false });
+
 // Interactive animated background component
-function AnimatedBackground() {
+function AnimatedBackgroundComponent() {
   return (
     <div className="absolute inset-0 overflow-hidden z-0">
       <div className="absolute w-[40rem] h-[40rem] rounded-full bg-brand-400/10 -top-20 -left-20 animate-blob"></div>
@@ -19,7 +24,7 @@ function AnimatedBackground() {
 }
 
 // Animated railway track component
-function RailwayTrackAnimation() {
+function RailwayTrackAnimationComponent() {
   const trackRef = useRef(null);
   const [trackWidth, setTrackWidth] = useState(0);
   
